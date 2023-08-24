@@ -1,20 +1,20 @@
 ## Calculate metrics
 #' Title
 #'
-#' @param lambda
-#' @param lambda_aux
-#' @param r
-#' @param s
-#' @param mu_p
-#' @param mu_aux
-#' @param K
-#' @param X_i
+#' @param lambda #des
+#' @param lambda_aux #des
+#' @param r #des
+#' @param s #des
+#' @param mu_p #des
+#' @param mu_aux #des
+#' @param K #des
+#' @param X_i #des
 #'
 #' @return
-#' @export
+#' @export results
 #'
 #' @examples
-Calc_metrics <-function(lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i){
+Calc_results <-function(lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i){
   ### L^p_N = mean number of indidivuals in the primary queue when the truncation is N #skip
   ### L^a_N = mean number of indidivuals in the auxillary queue when the truncation is N #skip
   ### Traffic intensity of type A customer
@@ -24,7 +24,7 @@ Calc_metrics <-function(lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i){
   ### the probability of a Type A customer waiting while a primary server is free
   alpha <- 0
   for(i in 1:((r-s))){
-    for(j in (s+1):ncol(X_i)){
+    for(j in (s+2):ncol(X_i)){
       alpha <- alpha + X_i[i,j]
     }
   }
