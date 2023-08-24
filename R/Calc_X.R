@@ -49,7 +49,7 @@ Calc_X <- function(K,s,r, A,B,R){
   best_fit <- lsfit(G, b)
 
   # normalize X
-  X <- normalize_vector(X)
+  X <- normalize_vector(X,matrix_size,R)
 
   ## reformat to x_ij
   X_i <- matrix(0, nrow = nrow(X)/matrix_size, ncol=matrix_size)

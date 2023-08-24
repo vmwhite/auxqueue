@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-normalize_vector <- function(vec, tolerance = 0.001, time_limit= 5) {
+normalize_vector <- function(vec, matrix_size, R, tolerance = 0.001, time_limit= 5) {
   # Get the start time
   start_time <- Sys.time()
   while ( 1 - sum(vec) > tolerance && difftime(Sys.time(), start_time, units = "secs") < time_limit ) {

@@ -51,5 +51,5 @@ while ( L_a_N_val > 0.02 || L_p_N_val> 0.02  ){
   print(paste0("N = ", N, ", L_p_diff =", L_p_N_val, ", L_a_diff = ", L_a_N_val))
 }
 K <- N
-return(c(K, X))
+return(X)
 }

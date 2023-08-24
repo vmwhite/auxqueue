@@ -14,7 +14,7 @@
 #' @export results
 #'
 #' @examples
-Calc_results <-function(lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i){
+Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i){
   ### L^p_N = mean number of indidivuals in the primary queue when the truncation is N #skip
   ### L^a_N = mean number of indidivuals in the auxillary queue when the truncation is N #skip
   ### Traffic intensity of type A customer

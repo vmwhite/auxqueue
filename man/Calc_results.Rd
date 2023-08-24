@@ -7,21 +7,21 @@
 Calc_results(lambda, lambda_aux, r, s, mu_p, mu_aux, K, X_i)
 }
 \arguments{
-\item{lambda}{des}
+\item{lambda}{#des}
 
-\item{lambda_aux}{des}
+\item{lambda_aux}{#des}
 
-\item{r}{des}
+\item{r}{#des}
 
-\item{s}{des}
+\item{s}{#des}
 
-\item{mu_p}{des}
+\item{mu_p}{#des}
 
-\item{mu_aux}{des}
+\item{mu_aux}{#des}
 
-\item{K}{des}
+\item{K}{#des}
 
-\item{X_i}{des}
+\item{X_i}{#des}
 }
 \description{
 Title
