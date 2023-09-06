@@ -4,7 +4,7 @@
 \alias{Calc_results}
 \title{Calculate metrics of A QUEUEING SYSTEM WITH AUXILIARY SERVERS}
 \usage{
-Calc_results(p, lambda, lambda_aux, r, s, mu_p, mu_aux, K, X_i)
+Calc_results(p, lambda, lambda_aux, r, s, mu_p, mu_aux, K, X_i, skip)
 }
 \arguments{
 \item{lambda}{:= arrival rate of all customers}
@@ -22,6 +22,8 @@ Calc_results(p, lambda, lambda_aux, r, s, mu_p, mu_aux, K, X_i)
 \item{K}{:= truncation parameter}
 
 \item{X_i}{:= Array of transition probabilities}
+
+\item{skips}{:= T/F that is True if the queue is unstable}
 }
 \value{
 returns queue key performance metrics in a data frame
@@ -39,9 +41,10 @@ lambda_aux <- (p-1) * lambda
 lambda_p <- p * lambda
 mu_p <-.4
 mu_aux <-.5
+skip <- FALSE
 A <- Calc_Am(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
 R <- Calc_R(A, K,s)
 B <-  Calc_Bmn(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
 X_i <- Calc_X(K,s,r, A,B,R)
-Calc_results(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i)
+Calc_results(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip)
 }
