@@ -57,8 +57,7 @@ Checks <- function(lambda, mu_p, mu_aux,c_p, c_aux,p)
     ro <- max(lambda/(r*mu_p), lambda/((c_p - c_aux)* mu_p + c_aux*mu_aux))
     ro_a <- lambda_aux/(c_aux*mu_aux)
     #cat(paste("Throughput is: ", mu * c, "\n", sep=""))
-    cat(paste("Utilization exceeds 100% use!! primary servers:", ro * 100, "%\n auxillary servers:", ro_a * 100, "%\n", sep=""))
-    paste0(AUX_r_c_warning)
+    paste0(AUX_r_c_warning, " Utilization exceeds 100% use!! primary servers rho:", ro * 100, "%\n auxillary servers rho:", ro_a * 100, "%\n", sep="")
   }
 
 }
