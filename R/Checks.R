@@ -27,13 +27,13 @@ Checks <- function(lambda, mu_p, mu_aux,c_p, c_aux,p)
   s<- c_aux
   r <- c_p
 
-  AUX_r_c_warning <- "( lambda/(mu*c) ) has to be less than one!!"
-  AUX_class <- "the class of the object x has to be M/M/C (i_AUX)"
-  ALL_c_warning <- "the number of servers for each server type needs to be larger than 1"
-  ALL_positive <- "Lambda and service times needs to be non-negative"
-  ALL_p_warning <- "The probability of a auxiliary call needs to be between 0 and 1"
-  AUX_anomalous <- "Some value of lambda, mu, c or n is anomalous. Check the values."
-  ALL_integer <- "the  number of servers needs to be integer"
+  AUX_r_c_warning <- "ERROR: ( lambda/(mu*c) ) has to be less than one!!"
+  AUX_class <- "ERROR: the class of the object x has to be M/M/C (i_AUX)"
+  ALL_c_warning <- "ERROR: the number of servers for each server type needs to be larger than 1"
+  ALL_positive <- "ERROR: Lambda and service times needs to be non-negative"
+  ALL_p_warning <- "ERROR: The probability of a auxiliary call needs to be between 0 and 1"
+  AUX_anomalous <- "ERROR: Some value of lambda, mu, c or n is anomalous. Check the values."
+  ALL_integer <- "ERROR: the  number of servers needs to be integer"
 
   s <- lambda_aux / mu_aux
   lam_1 <- c_p*mu_p
