@@ -1,18 +1,24 @@
-#' Title
+#' Checking for queue necessary conditions
+#' @param lambda := arrival rate of all customers
+#' @param mu_p := primary server rate
+#' @param mu_aux := auxiliary server rate
+#' @param c_p := number of primary servers
+#' @param c_aux := number of auxiliary servers
+#' @param p := percentage of customers that are of type primary
 #'
-#' @param lambda
-#' @param mu_p
-#' @param mu_aux
-#' @param c_p
-#' @param c_aux
-#' @param n_p
-#' @param n_aux
-#' @param p
-#'
-#' @return
+#' @return nothing or error string if necessary conditions are not met
 #' @export
 #'
 #' @examples
+#' r <- 10
+#' s <- 5
+#' c_p <- r
+#' c_aux <- s
+#' lambda <- .2
+#' p <-.9
+#' mu_p <-.4
+#' mu_aux <-.5
+#' Checks(lambda, mu_p, mu_aux,c_p, c_aux,p)
 Checks <- function(lambda, mu_p, mu_aux,c_p, c_aux,p)
 {
   q <- 1-p

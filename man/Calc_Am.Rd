@@ -32,7 +32,6 @@ A_m matrix that represents non-boundary behavior
 Calculating A matrix
 }
 \examples{
-
 K <- 13
 r <- 10
 s <- 5

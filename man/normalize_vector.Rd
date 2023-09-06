@@ -2,13 +2,33 @@
 % Please edit documentation in R/normalize_vector.R
 \name{normalize_vector}
 \alias{normalize_vector}
-\title{Title}
+\title{Calculate additional stationary transition probabilities above boundary behavior}
 \usage{
 normalize_vector(vec, matrix_size, R, tolerance = 0.001, time_limit = 5)
 }
 \arguments{
-\item{time_limit}{}
+\item{vec}{<- vector of X_i to add transition probabilities to}
+
+\item{tolerance}{<- tolerance to stop loop at}
+
+\item{time_limit}{<- time limit in seconds}
 }
 \description{
-Title
+Calculate additional stationary transition probabilities above boundary behavior
+}
+\examples{
+#' K <- 13
+r <- 10
+s <- 5
+lambda <- .2
+p <-.9
+lambda_aux <- (p-1) * lambda
+lambda_p <- p * lambda
+mu_p <-.4
+mu_aux <-.5
+A <- Calc_Am(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
+R <- Calc_R(A, K,s)
+B <-  Calc_Bmn(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
+vec <- Calc_X(K,s,r, A,B,R)
+normalize_vector(vec, matrix_size, R)
 }

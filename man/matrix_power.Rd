@@ -2,13 +2,29 @@
 % Please edit documentation in R/matrix_power.R
 \name{matrix_power}
 \alias{matrix_power}
-\title{Title}
+\title{matrix intermediary function}
 \usage{
 matrix_power(A, n)
 }
 \arguments{
-\item{n}{}
+\item{A}{:= Matrix to raise to the n power}
+
+\item{n}{:= power to raise A matrix to}
 }
 \description{
-Title
+matrix intermediary function
+}
+\examples{
+K <- 13
+r <- 10
+s <- 5
+lambda <- .2
+p <-.9
+lambda_aux <- (p-1) * lambda
+lambda_p <- p * lambda
+mu_p <-.4
+mu_aux <-.5
+A <- Calc_Am(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
+n <- 3
+matrix_power(A, n)
 }
