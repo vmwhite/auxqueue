@@ -73,13 +73,9 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
     ### expected waiting time in queue for auxiliary customers, the mean delay for type A customers
     W_A_q = (L_P_q / lambda) + (L_A_q/lambda_aux)
   }
-  results <- c(r)
-  results <- append(results,s)
-  results <- append(results,K)
-  results <- append(results,mu_p)
-  results <- append(results,mu_aux)
-  results <- append(results,lambda)
-  results <- append(results,p)
+
+  results <- list(r,s, K,mu_p, mu_aux, lambda, p)
+
   if (skip == FALSE){
     results <- append(results,rho_A)
     results <- append(results,alpha)
