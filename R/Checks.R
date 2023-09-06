@@ -59,5 +59,8 @@ Checks <- function(lambda, mu_p, mu_aux,c_p, c_aux,p)
     #cat(paste("Throughput is: ", mu * c, "\n", sep=""))
     paste0(AUX_r_c_warning, " Utilization exceeds 100% use!! primary servers rho:", ro * 100, "%\n auxillary servers rho:", ro_a * 100, "%\n", sep="")
   }
+  else{
+    paste0("Calculating Metrics - model inputs are valid.")
+  }
 
 }
