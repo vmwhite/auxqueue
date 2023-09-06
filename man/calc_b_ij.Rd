@@ -7,8 +7,27 @@
 calc_b_ij(i, j, mu_p, p, mu_aux)
 }
 \arguments{
-\item{mu_aux}{}
+\item{i}{:= first subscript}
+
+\item{j}{:= second subscript}
+
+\item{mu_p}{:= primary server service rate}
+
+\item{p}{:= percentage of customers that are of type primary}
+
+\item{mu_aux}{:= auxiliary server service rate}
+}
+\value{
+matrix b_ij
 }
 \description{
 Title
+}
+\examples{
+i < - 5
+j <- 2
+mu_p <- .5
+p <- .8
+mu_aux <- .2
+calc_b_ij<- function(i, j, mu_p, p, mu_aux)
 }

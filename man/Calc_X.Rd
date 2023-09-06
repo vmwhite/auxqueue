@@ -2,13 +2,41 @@
 % Please edit documentation in R/Calc_X.R
 \name{Calc_X}
 \alias{Calc_X}
-\title{Title}
+\title{Solve for stationary probability vector X}
 \usage{
 Calc_X(K, s, r, A, B, R)
 }
 \arguments{
-\item{R}{}
+\item{K}{:= truncation parameter}
+
+\item{s}{:= number of auxiliary servers}
+
+\item{r}{:= number of primary servers}
+
+\item{A}{:=  A_m matrix that represents non-boundary behavior}
+
+\item{B}{:= matrix B of the states with boundary behavior}
+
+\item{R}{:= R matrix}
+}
+\value{
+stationary probability vector X
 }
 \description{
-Title
+Solve for stationary probability vector X
+}
+\examples{
+K <- 13
+r <- 10
+s <- 5
+lambda <- .2
+p <-.9
+lambda_aux <- (p-1) * lambda
+lambda_p <- p * lambda
+mu_p <-.4
+mu_aux <-.5
+A <- Calc_Am(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
+R <- Calc_R(A, K,s)
+B <-  Calc_Bmn(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
+X_i <- Calc_X(K,s,r, A,B,R)
 }

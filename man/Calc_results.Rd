@@ -2,27 +2,46 @@
 % Please edit documentation in R/Calc_results.R
 \name{Calc_results}
 \alias{Calc_results}
-\title{Title}
+\title{Calculate metrics of A QUEUEING SYSTEM WITH AUXILIARY SERVERS}
 \usage{
-Calc_results(lambda, lambda_aux, r, s, mu_p, mu_aux, K, X_i)
+Calc_results(p, lambda, lambda_aux, r, s, mu_p, mu_aux, K, X_i)
 }
 \arguments{
-\item{lambda}{#des}
+\item{lambda}{:= arrival rate of all customers}
 
-\item{lambda_aux}{#des}
+\item{lambda_aux}{:= arrival rate of customers of type auxiliary}
 
-\item{r}{#des}
+\item{r}{:= number of primary servers}
 
-\item{s}{#des}
+\item{s}{:= number of auxiliary servers}
 
-\item{mu_p}{#des}
+\item{mu_p}{:= primary server rate}
 
-\item{mu_aux}{#des}
+\item{mu_aux}{:= auxiliary server rate}
 
-\item{K}{#des}
+\item{K}{:= truncation parameter}
 
-\item{X_i}{#des}
+\item{X_i}{:= Array of transition probabilities}
+}
+\value{
+returns queue key performance metrics in a data frame
 }
 \description{
-Title
+Calculate metrics of A QUEUEING SYSTEM WITH AUXILIARY SERVERS
+}
+\examples{
+K <- 13
+r <- 10
+s <- 5
+lambda <- .2
+p <-.9
+lambda_aux <- (p-1) * lambda
+lambda_p <- p * lambda
+mu_p <-.4
+mu_aux <-.5
+A <- Calc_Am(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
+R <- Calc_R(A, K,s)
+B <-  Calc_Bmn(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
+X_i <- Calc_X(K,s,r, A,B,R)
+Calc_results(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i)
 }

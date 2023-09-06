@@ -2,26 +2,26 @@
 % Please edit documentation in R/calc_a_ij.R
 \name{calc_a_ij}
 \alias{calc_a_ij}
-\title{a_ij function to aid in calculating A matrix}
+\title{a_ij intermediate function to aid in calculating A matrix}
 \usage{
 calc_a_ij(i, j, mu_p, mu_aux, p)
 }
 \arguments{
-\item{i}{first subscript}
+\item{i}{:= first subscript}
 
-\item{j}{second subscript}
+\item{j}{:= second subscript}
 
-\item{mu_p}{primary server service rate}
+\item{mu_p}{:= primary server service rate}
 
-\item{mu_aux}{auxiliary server service rate}
+\item{mu_aux}{:= auxiliary server service rate}
 
-\item{p}{percentage of calls that are of type primary}
+\item{p}{:= percentage of customers that are of type primary}
 }
 \value{
 a_ij constant
 }
 \description{
-a_ij function to aid in calculating A matrix
+a_ij intermediate function to aid in calculating A matrix
 }
 \examples{
 i <- 1

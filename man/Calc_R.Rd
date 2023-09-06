@@ -7,8 +7,28 @@
 Calc_R(A, K, s)
 }
 \arguments{
-\item{s}{}
+\item{A}{:= A_m matrix that represents non-boundary behavior}
+
+\item{K}{:= truncation parameter}
+
+\item{s}{:= number of auxiliary servers}
+}
+\value{
+R matrix
 }
 \description{
 Title
+}
+\examples{
+K <- 13
+s <- 5
+r <- 10
+lambda <- .2
+p <-.9
+lambda_aux <- (p-1) * lambda
+lambda_p <- p * lambda
+mu_p <-.4
+mu_aux <-.5
+A <- Calc_Am (K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
+Calc_R(A, K,s)
 }

@@ -1,10 +1,10 @@
-#' a_ij function to aid in calculating A matrix
+#' a_ij intermediate function to aid in calculating A matrix
 #'
-#' @param i first subscript
-#' @param j second subscript
-#' @param mu_p primary server service rate
-#' @param mu_aux auxiliary server service rate
-#' @param p percentage of calls that are of type primary
+#' @param i := first subscript
+#' @param j := second subscript
+#' @param mu_p := primary server service rate
+#' @param mu_aux := auxiliary server service rate
+#' @param p := percentage of customers that are of type primary
 #'
 #' @return a_ij constant
 #' @export

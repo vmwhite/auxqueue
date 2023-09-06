@@ -2,13 +2,28 @@
 % Please edit documentation in R/calc_mu_mn.R
 \name{calc_mu_mn}
 \alias{calc_mu_mn}
-\title{mu_mn function to calculate A matrix}
+\title{mu_mn intermediate function to calculate A matrix}
 \usage{
 calc_mu_mn(m, n, mu_p, mu_aux)
 }
 \arguments{
-\item{mu_aux}{}
+\item{m}{:=first index}
+
+\item{n}{:= second index}
+
+\item{mu_p}{:= primary server service rate}
+
+\item{mu_aux}{:= auxiliary server service rate}
+}
+\value{
+value of mu_mn
 }
 \description{
-mu_mn function to calculate A matrix
+mu_mn intermediate function to calculate A matrix
+}
+\examples{
+m < - 5
+n <- 2
+mu_p <- .5
+mu_aux <- .2
 }

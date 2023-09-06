@@ -2,13 +2,44 @@
 % Please edit documentation in R/Calc_B_mn.R
 \name{Calc_Bmn}
 \alias{Calc_Bmn}
-\title{Title}
+\title{Calculating B matrices}
 \usage{
 Calc_Bmn(K, s, r, lambda, lambda_aux, lambda_p, mu_p, mu_aux, p)
 }
 \arguments{
-\item{p}{}
+\item{K}{:= truncation parameter}
+
+\item{s}{:= number of auxiliary servers}
+
+\item{r}{:= number of primary servers}
+
+\item{lambda}{:= arrival rate of all customers}
+
+\item{lambda_aux}{:= arrival rate of customers of type auxiliary}
+
+\item{lambda_p}{:= arrival rate of customers of type primary}
+
+\item{mu_p}{:= primary server rate}
+
+\item{mu_aux}{:= auxiliary server rate}
+
+\item{p}{:= percentage of customers that are of type primary}
+}
+\value{
+matrix B of the states with boundary behavior
 }
 \description{
-Title
+Calculating B matrices
+}
+\examples{
+#' K <- 13
+r <- 10
+s <- 5
+lambda <- .2
+p <-.9
+lambda_aux <- (p-1) * lambda
+lambda_p <- p * lambda
+mu_p <-.4
+mu_aux <-.5
+Calc_Bmn(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
 }

@@ -1,19 +1,30 @@
 #' Calculating A matrix
 #'
-#' @param K
-#' @param s
-#' @param r
-#' @param lambda
-#' @param lambda_aux
-#' @param lambda_p
-#' @param mu_p
-#' @param mu_aux
-#' @param p
+#' @param K := truncation parameter
+#' @param s := number of auxiliary servers
+#' @param r := number of primary servers
+#' @param lambda := arrival rate of all customers
+#' @param lambda_aux := arrival rate of customers of type auxiliary
+#' @param lambda_p := arrival rate of customers of type primary
+#' @param mu_p := primary server rate
+#' @param mu_aux := auxiliary server rate
+#' @param p := percentage of customers that are of type primary
 #'
-#' @return
+#' @return A_m matrix that represents non-boundary behavior
 #' @export
 #'
 #' @examples
+#'
+#' K <- 13
+#' r <- 10
+#' s <- 5
+#' lambda <- .2
+#' p <-.9
+#' lambda_aux <- (p-1) * lambda
+#' lambda_p <- p * lambda
+#' mu_p <-.4
+#' mu_aux <-.5
+#' Calc_Am(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
 Calc_Am <- function(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p){
   #define q
   q <- 1-p

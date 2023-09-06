@@ -2,13 +2,38 @@
 % Please edit documentation in R/auxqueue.R
 \name{auxqueue}
 \alias{auxqueue}
-\title{Title}
+\title{A QUEUEING SYSTEM WITH AUXILIARY SERVERS}
 \usage{
 auxqueue(c_p, c_aux, mu_p, mu_aux, lambda, p, K = 13)
 }
 \arguments{
-\item{K}{}
+\item{c_p}{:= number of primary servers}
+
+\item{c_aux}{:= number of auxiliary servers}
+
+\item{mu_p}{:= service time of primary servers}
+
+\item{mu_aux}{:= service time of auxiliary servers}
+
+\item{lambda}{:= arrival rate of customers}
+
+\item{p}{:= percentage of customers that are of type primary}
+
+\item{K}{:= truncation parameter, default of 13}
+}
+\value{
+results in the form of a data frame
 }
 \description{
-Title
+A QUEUEING SYSTEM WITH AUXILIARY SERVERS
+}
+\examples{
+c_p <- 5
+c_aux <- 3
+mu_p <- 4
+mu_aux <- 2
+lambda <- 1
+p <- .8
+K <- 13
+results<- auxqueue(c_p,c_aux,mu_p, mu_aux, lambda, p, K=13)
 }

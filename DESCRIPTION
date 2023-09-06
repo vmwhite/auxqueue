@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Veronica", "White", , "vmwhite@wisc.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3008-8213"))
-Description: This package implements the queue presented in: DOI 10.1287/mnsc.30.10.1207 see Green, L. (1984). A QUEUEING SYSTEM WITH AUXILIARY SERVERS for more details
+Description: This package implements the queue presented in: DOI 10.1287/mnsc.30.10.1207 see Green, L. (1984). A QUEUEING SYSTEM WITH AUXILIARY SERVERS for more details.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

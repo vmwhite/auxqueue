@@ -1,22 +1,36 @@
-## Calculate metrics
-#' Title
+#' Calculate metrics of A QUEUEING SYSTEM WITH AUXILIARY SERVERS
 #'
-#' @param lambda #des
-#' @param lambda_aux #des
-#' @param r #des
-#' @param s #des
-#' @param mu_p #des
-#' @param mu_aux #des
-#' @param K #des
-#' @param X_i #des
+#' @param lambda := arrival rate of all customers
+#' @param lambda_aux := arrival rate of customers of type auxiliary
+#' @param r := number of primary servers
+#' @param s := number of auxiliary servers
+#' @param mu_p := primary server rate
+#' @param mu_aux := auxiliary server rate
+#' @param K := truncation parameter
+#' @param X_i := Array of transition probabilities
 #'
-#' @return
-#' @export results
+#' @return returns queue key performance metrics in a data frame
+#' @export
 #'
 #' @examples
+#' K <- 13
+#' r <- 10
+#' s <- 5
+#' lambda <- .2
+#' p <-.9
+#' lambda_aux <- (p-1) * lambda
+#' lambda_p <- p * lambda
+#' mu_p <-.4
+#' mu_aux <-.5
+#' A <- Calc_Am(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
+#' R <- Calc_R(A, K,s)
+#' B <-  Calc_Bmn(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
+#' X_i <- Calc_X(K,s,r, A,B,R)
+#' Calc_results(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i)
+
 Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i){
-  ### L^p_N = mean number of indidivuals in the primary queue when the truncation is N #skip
-  ### L^a_N = mean number of indidivuals in the auxillary queue when the truncation is N #skip
+  ### L^p_N = mean number of individuals in the primary queue when the truncation is N #skip
+  ### L^a_N = mean number of individuals in the auxiliary queue when the truncation is N #skip
   ### Traffic intensity of type A customer
   rho_A <- lambda_aux /(s*mu_aux)
   ### Traffic intensity of all customers

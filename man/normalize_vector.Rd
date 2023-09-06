@@ -4,7 +4,7 @@
 \alias{normalize_vector}
 \title{Title}
 \usage{
-normalize_vector(vec, tolerance = 0.001, time_limit = 5)
+normalize_vector(vec, matrix_size, R, tolerance = 0.001, time_limit = 5)
 }
 \arguments{
 \item{time_limit}{}

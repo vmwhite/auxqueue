@@ -2,13 +2,23 @@
 % Please edit documentation in R/calc_alpha_i.R
 \name{calc_alpha_i}
 \alias{calc_alpha_i}
-\title{Title}
+\title{alpha_i intermediate function to aid in calculating A_m matrix}
 \usage{
 calc_alpha_i(p, i)
 }
 \arguments{
-\item{i}{}
+\item{p}{:= percentage of customers that are of type primary}
+
+\item{i}{:= index}
+}
+\value{
+alpha
 }
 \description{
-Title
+alpha_i intermediate function to aid in calculating A_m matrix
+}
+\examples{
+p <- .8
+i <- 3
+calc_alpha_i(p, i)
 }
