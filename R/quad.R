@@ -1,8 +1,8 @@
 #' quadratic function
 #'
-#' @param a coefficient of X^2
-#' @param b coefficient of X
-#' @param c constant
+#' @param a := coefficient of X^2
+#' @param b := coefficient of X
+#' @param c := constant
 #'
 #' @return Two X values from resulting quadratic equation
 #' @export

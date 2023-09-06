@@ -13,6 +13,9 @@ normalize_vector(vec, matrix_size, R, tolerance = 0.001, time_limit = 5)
 
 \item{time_limit}{<- time limit in seconds}
 }
+\value{
+returns expanded transtion probabilty vector
+}
 \description{
 Calculate additional stationary transition probabilities above boundary behavior
 }

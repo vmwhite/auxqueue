@@ -1,20 +1,27 @@
-#### Solve for Truncation parameter K ######
-#' Title
+#' Solve for Truncation parameter K ######
+#' @param s := number of auxiliary servers
+#' @param r := number of primary servers
+#' @param lambda := arrival rate of all customers
+#' @param lambda_aux := arrival rate of customers of type auxiliary
+#' @param lambda_p := arrival rate of customers of type primary
+#' @param mu_p := primary server rate
+#' @param mu_aux := auxiliary server rate
+#' @param p := percentage of customers that are of type primary
+#' @param N := temporary starting truncation parameter
 #'
-#' @param s
-#' @param r
-#' @param lambda
-#' @param lambda_aux
-#' @param lambda_p
-#' @param mu_p
-#' @param mu_aux
-#' @param p
-#' @param N
-#'
-#' @return
+#' @return final K truncation parameter with key metric stability
 #' @export
 #'
 #' @examples
+#' r <- 10
+#' s <- 5
+#' lambda <- .2
+#' p <-.9
+#' lambda_aux <- (p-1) * lambda
+#' lambda_p <- p * lambda
+#' mu_p <-.4
+#' mu_aux <-.5
+#' K <- Solve_K(s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p, N = s+1)
 Solve_K <- function(s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p, N = s+1) {
 N <- max(s+1, 11) # K > s
 L_p_N_val <- 1

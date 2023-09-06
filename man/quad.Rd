@@ -7,11 +7,11 @@
 quad(a, b, c)
 }
 \arguments{
-\item{a}{coefficient of X^2}
+\item{a}{:= coefficient of X^2}
 
-\item{b}{coefficient of X}
+\item{b}{:= coefficient of X}
 
-\item{c}{constant}
+\item{c}{:= constant}
 }
 \value{
 Two X values from resulting quadratic equation

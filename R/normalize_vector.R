@@ -4,7 +4,7 @@
 #' @param tolerance <- tolerance to stop loop at
 #' @param time_limit <- time limit in seconds
 #'
-#' @return
+#' @return returns expanded transtion probabilty vector
 #' @export
 #'
 #' @examples

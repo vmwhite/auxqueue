@@ -2,13 +2,43 @@
 % Please edit documentation in R/Solve_K.R
 \name{Solve_K}
 \alias{Solve_K}
-\title{Title}
+\title{Solve for Truncation parameter K ######}
 \usage{
 Solve_K(s, r, lambda, lambda_aux, lambda_p, mu_p, mu_aux, p, N = s + 1)
 }
 \arguments{
-\item{N}{}
+\item{s}{:= number of auxiliary servers}
+
+\item{r}{:= number of primary servers}
+
+\item{lambda}{:= arrival rate of all customers}
+
+\item{lambda_aux}{:= arrival rate of customers of type auxiliary}
+
+\item{lambda_p}{:= arrival rate of customers of type primary}
+
+\item{mu_p}{:= primary server rate}
+
+\item{mu_aux}{:= auxiliary server rate}
+
+\item{p}{:= percentage of customers that are of type primary}
+
+\item{N}{:= temporary starting truncation parameter}
+}
+\value{
+final K truncation parameter with key metric stability
 }
 \description{
-Title
+Solve for Truncation parameter K ######
+}
+\examples{
+r <- 10
+s <- 5
+lambda <- .2
+p <-.9
+lambda_aux <- (p-1) * lambda
+lambda_p <- p * lambda
+mu_p <-.4
+mu_aux <-.5
+K <- Solve_K(s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p, N = s+1)
 }

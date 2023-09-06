@@ -1,16 +1,29 @@
-#' Title
+#' Full Generator matrix
 #'
-#' @param K
-#' @param s
-#' @param r
-#' @param A
-#' @param B
-#' @param R
+#' @param K := truncation parameter
+#' @param s := number of auxiliary servers
+#' @param r := number of primary servers
+#' @param A :=  A_m matrix that represents non-boundary behavior
+#' @param B := matrix B of the states with boundary behavior
+#' @param R := R matrix
 #'
-#' @return
+#' @return Full Generator matrix
 #' @export
 #'
 #' @examples
+#' K <- 13
+#' r <- 10
+#' s <- 5
+#' lambda <- .2
+#' p <-.9
+#' lambda_aux <- (p-1) * lambda
+#' lambda_p <- p * lambda
+#' mu_p <-.4
+#' mu_aux <-.5
+#' A <- Calc_Am(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
+#' R <- Calc_R(A, K,s)
+#' B <-  Calc_Bmn(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
+#' trunc_G(K,s,r, A,B,R)
 trunc_G <- function(K,s,r, A,B,R) {
   #Calculate the truncated r by r Generator matrix as a_irow_icol_jrow_jcol
   matrix_size <- (K) + 1

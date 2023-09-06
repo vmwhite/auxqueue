@@ -11,6 +11,9 @@ matrix_power(A, n)
 
 \item{n}{:= power to raise A matrix to}
 }
+\value{
+completed matrix operation
+}
 \description{
 matrix intermediary function
 }
