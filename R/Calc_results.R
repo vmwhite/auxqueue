@@ -47,24 +47,32 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
     }
 
     ### steady state number customers waiting in the primary queue
-    L_P_q <- 0
+    L_P_q <- 0 ### steady state number customers waiting in the primary queue
+    p_d_P<- 0  ### the probability of delay for Type P customer
+    p_d_A <- 0 ### the probability of delay for Type a customer
     for (j in 1:(s-1+1)){
       for (i in (r-j+1):nrow(X_i)){
-        L_P_q <- L_P_q + (i - r + j - 2)*X_i[i,j]
+        num_in_queue <- (i - r + j - 2)
+        L_P_q <- L_P_q + num_in_queue*X_i[i,j]
+        p_d_P <- p_d_P+ (1 - ((1-p)^number_in_queue))*X_i[i,j]
+        p_d_A <- p_d_A+ (1 - ((p)^number_in_queue))*X_i[i,j]
       }
     }
     for (j in (s+1):(K+1)){
       for (i in (r-s+1+1):nrow(X_i)){
-        L_P_q <- L_P_q + (i - r + s - 1)*X_i[i,j]
+        num_in_queue <- (i - r + s - 1)
+        L_P_q <- L_P_q + num_in_queue*X_i[i,j]
+        p_d_P <- p_d_P+ (1 - ((1-p)^number_in_queue))*X_i[i,j]
+        p_d_A <- p_d_A+ (1 - ((p)^number_in_queue))*X_i[i,j]
       }
     }
 
-    ### steady state number customers waiting in the auxilary queue
+    ### steady state number customers waiting in the auxiliary queue
     L_A_q <- 0
-
     for (i in 1:nrow(X_i)){
       for (j in (s+1+1):(K+1)){
         L_A_q <- L_A_q + (j - s - 1)*X_i[i,j]
+        p_d_A <- p_d_A + X_i[i,j]
       }
     }
 
@@ -81,10 +89,12 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
     results <- append(results,alpha)
     results <- append(results,L_P_q)
     results <- append(results,L_A_q)
+    results <- append(results,p_d_P)
+    results <- append(results,p_d_A)
     results <- append(results,W_P_q)
     results <- append(results,W_A_q)
   }else{
-    for (i in 1:6){
+    for (i in 1:8){
       results <- append(results, "unstable")
     }
   }
@@ -97,6 +107,8 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
   metrics <- append(metrics, "alpha_typeA_prob_delay" )
   metrics <- append(metrics, "L_p_q" )
   metrics <- append(metrics, "L_A_q" )
+  metrics <- append(metrics, "p_d_P")
+  metrics <- append(metrics, "p_d_A")
   metrics <- append(metrics, "W_P_q" )
   metrics <- append(metrics, "W_A_q" )
   colnames(DF) <- metrics
