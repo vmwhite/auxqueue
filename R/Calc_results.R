@@ -54,16 +54,16 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
       for (i in (r-j+1):nrow(X_i)){
         num_in_queue <- (i - r + j - 2)
         L_P_q <- L_P_q + num_in_queue*X_i[i,j]
-        p_d_P <- p_d_P+ (1 - ((1-p)^number_in_queue))*X_i[i,j]
-        p_d_A <- p_d_A+ (1 - ((p)^number_in_queue))*X_i[i,j]
+        p_d_P <- p_d_P+ (1 - ((1-p)^num_in_queue))*X_i[i,j]
+        p_d_A <- p_d_A+ (1 - ((p)^num_in_queue))*X_i[i,j]
       }
     }
     for (j in (s+1):(K+1)){
       for (i in (r-s+1+1):nrow(X_i)){
         num_in_queue <- (i - r + s - 1)
         L_P_q <- L_P_q + num_in_queue*X_i[i,j]
-        p_d_P <- p_d_P+ (1 - ((1-p)^number_in_queue))*X_i[i,j]
-        p_d_A <- p_d_A+ (1 - ((p)^number_in_queue))*X_i[i,j]
+        p_d_P <- p_d_P+ (1 - ((1-p)^num_in_queue))*X_i[i,j]
+        p_d_A <- p_d_A+ (1 - ((p)^num_in_queue))*X_i[i,j]
       }
     }
 
