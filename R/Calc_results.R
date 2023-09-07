@@ -52,7 +52,7 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
     p_d_A <- 0 ### the probability of delay for Type a customer
     for (j in 1:(s-1+1)){
       for (i in (r-j+1):nrow(X_i)){
-        num_in_queue <- (i - r + j - 2)
+        num_in_queue <- (i - r + j - 1)
         L_P_q <- L_P_q + num_in_queue*X_i[i,j]
         p_d_P <- p_d_P+ (1 - ((1-p)^num_in_queue))*X_i[i,j]
         p_d_A <- p_d_A+ (1 - ((p)^num_in_queue))*X_i[i,j]
@@ -85,6 +85,7 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
   results <- list(r,s, K,mu_p, mu_aux, lambda, p)
 
   if (skip == FALSE){
+    results <- append(results,rho)
     results <- append(results,rho_A)
     results <- append(results,alpha)
     results <- append(results,L_P_q)
@@ -94,7 +95,7 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
     results <- append(results,W_P_q)
     results <- append(results,W_A_q)
   }else{
-    for (i in 1:8){
+    for (i in 1:9){
       results <- append(results, "unstable")
     }
   }
@@ -103,6 +104,7 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
   DF <- data.frame(results)
   # set column names
   metrics <- list("r", "s","K", "mu_p", "mu_aux","lambda", "p" )
+  metrics <- append(metrics, "rho_P" )
   metrics <- append(metrics, "rho_A" )
   metrics <- append(metrics, "alpha_typeA_prob_delay" )
   metrics <- append(metrics, "L_p_q" )
