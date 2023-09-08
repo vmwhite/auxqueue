@@ -25,10 +25,6 @@
 normalize_vector <- function(vec, matrix_size, R, tolerance = 0.001, time_limit= 5) {
   # Get the start time
   start_time <- Sys.time()
-  t <- try(sum(vec))
-  if("try-error" %in% class(t)){
-    vec<- unlist(vec)
-  }
   while ( 1 - sum(vec) > tolerance && difftime(Sys.time(), start_time, units = "secs") < time_limit ) {
     new_X <- vec[-(1:(length(vec) - matrix_size))] %*% R
     for (i in 1:ncol(new_X)){

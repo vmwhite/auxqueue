@@ -59,6 +59,7 @@ Calc_X <- function(K,s,r, A,B,R){
   t <- try(X <- qr.solve(qr(as.numeric(factor(G))), b))
   if("try-error" %in% class(t)){
     X <- lsfit(G, b)
+    X <- X$coefficients
     #X <- ginv(G) %*% b ## takes longer
   }
 
