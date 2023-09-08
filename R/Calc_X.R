@@ -70,7 +70,7 @@ Calc_X <- function(K,s,r, A,B,R){
   X <- normalize_vector(X,matrix_size,R)
 
   ## reformat to x_ij
-  X_i <- matrix(0, nrow = max(length(X), nrow(X))/matrix_size, ncol=matrix_size) #depending on solution methd use nrpw por length
+  X_i <- matrix(0, nrow = max(length(X), nrow(X))/matrix_size, ncol=matrix_size) #depending on solution method use nrow or length
   count <- 1
   for (i in 1:(max(length(X), nrow(X))/matrix_size)){
     for(j in 1:matrix_size){
