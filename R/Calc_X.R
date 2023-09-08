@@ -48,7 +48,7 @@ Calc_X <- function(K,s,r, A,B,R){
       num <- num+1
     }
   }
-  # length(row_list) should == ncol(a)
+  # length(row_list) should == ncol(G)
   G <- rbind(G,row_list)
 
   b <- matrix(0, nrow=((r+1)*matrix_size),ncol=1)
@@ -56,11 +56,16 @@ Calc_X <- function(K,s,r, A,B,R){
 
 
   # Use QR decomposition to solve the system
-  qr_decomp <- qr(G)
-  X <- qr.solve(qr_decomp, b)
-  best_fit <- lsfit(G, b)
+  t <- try(X <- qr.solve(qr(as.numeric(factor(G))), b))
+  if("try-error" %in% class(t)){
+    X <- lsfit(G, b)
+    #X <- ginv(G) %*% b ## takes longer
+  }
 
-  # normalize X
+
+
+
+  # add additional rows to X
   X <- normalize_vector(X,matrix_size,R)
 
   ## reformat to x_ij

@@ -36,11 +36,10 @@ Calc_R <- function(A, K,s){
   temp <- solve(temp)
   R_Nminusone <- matrix(0, nrow=matrix_size, ncol=matrix_size)
   K_val = K-s+2 +1
-  A_coef<- list()
-  time_limit <- 10
-  start_time <- Sys.time()
-  while (difftime(Sys.time(), start_time, units = "secs") < time_limit ) {
-    for (N in 1:500){
+  #time_limit <- 10
+  #start_time <- Sys.time()
+  #while (difftime(Sys.time(), start_time, units = "secs") < time_limit ) {
+  for (N in 1:(A_m_lim)){
       R_N <-matrix(0, nrow=matrix_size, ncol=matrix_size)
       R_N <- R_N + A[1,,]
       if (A_m_lim > 3){
@@ -53,9 +52,7 @@ Calc_R <- function(A, K,s){
         R_N <- R_N %*% temp
       }
       R_Nminusone <- R_N
-    }
   }
-
   R<- R_N
   return(R)
 }

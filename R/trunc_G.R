@@ -102,7 +102,7 @@ trunc_G <- function(K,s,r, A,B,R) {
   ### restructure the matrix to solve
   # Reshape the matrix to a 2-dimensional matrix of size (r+1)*matrix_size by (r+1)*matrix_size
   # Assuming r and matrix_size are already defined
-  G <- matrix(0, nrow = (r + 1) * matrix_size, ncol = (r + 1) * matrix_size)
+  G <- matrix(0, nrow = ((r + 1)*matrix_size), ncol = ((r + 1)*matrix_size ))
   # Calculate the number of rows and columns in a_irow_icol_jrow_jcol
   G_rows <- nrow(a_irow_icol_jrow_jcol)
   G_cols <- ncol(a_irow_icol_jrow_jcol)
