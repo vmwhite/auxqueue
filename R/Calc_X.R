@@ -72,7 +72,7 @@ Calc_X <- function(K,s,r, A,B,R){
   ## reformat to x_ij
   X_i <- matrix(0, nrow = nrow(X)/matrix_size, ncol=matrix_size)
   count <- 1
-  for (i in 1:(nrow(X)/matrix_size)){
+  for (i in 1:(max(length(X), nrow(X))/matrix_size)){
     for(j in 1:matrix_size){
       X_i[i,j] <- X[count]
       count <- count+1
