@@ -56,11 +56,13 @@ Calc_X <- function(K,s,r, A,B,R){
 
 
   # Use QR decomposition to solve the system
-  t <- try(X <- qr.solve(qr(as.numeric(factor(G))), b))
+  qr_decomp <-qr(G)
+  t <- try(X <- qr.solve(qr_decomp$qr, b))
   if("try-error" %in% class(t)){
+    #X <- ginv(G) %*% b ## takes longer
     X <- lsfit(G, b)
     X <- X$coefficients
-    #X <- ginv(G) %*% b ## takes longer
+    #
   }
 
 
@@ -78,5 +80,6 @@ Calc_X <- function(K,s,r, A,B,R){
       count <- count+1
     }
   }
+  X_i <- na.omit(X_i)
   return(X_i)
 }

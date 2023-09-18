@@ -33,7 +33,7 @@ auxqueue <- function(c_p,c_aux,mu_p, mu_aux, lambda, p, K=13){
   }
   if (skip == FALSE){
     #### Solve for Truncation parameter K ######
-    X_i <- Solve_K(s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p, N = s+1)
+    X_i <- Solve_K(s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p, K)
     K <- ncol(X_i) - 1
     ### solve for A matrix ####
     #a_ij <- calc_a_ij()

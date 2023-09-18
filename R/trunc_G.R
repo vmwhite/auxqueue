@@ -34,7 +34,7 @@ trunc_G <- function(K,s,r, A,B,R) {
 
   for(i in (0:r-1)){
     n <- i
-    for (j in (0:(r))){
+    for (j in (0:r)){
       m <- n - j + 1
       if (m >= 0){
         a_irow_icol_jrow_jcol[i+1,j+1,,] <- B[m+1,n+1,,]

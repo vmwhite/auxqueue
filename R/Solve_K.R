@@ -23,7 +23,7 @@
 #' mu_aux <-.5
 #' K <- Solve_K(s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p, N = s+1)
 Solve_K <- function(s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p, N = s+1) {
-N <- max(s+1, 11) # K > s
+N <- max(s+1, 11, N) # K > s
 L_p_N_val <- 1
 L_a_N_val <- 1
 L_P_N_1 <- .0001
@@ -38,9 +38,9 @@ while ( L_a_N_val > 0.02 || L_p_N_val> 0.02  ){
   # calc L_P
   L_P_N <- L_P_N_1
   L_P_N_1 <- 0
-  for (i in 1:nrow(X)){
-    for (j in 1:(N+1)){
-      L_P_N_1 <- L_P_N_1 + (i -1)*X[i,j]
+  for (i in 0:(nrow(X)-1)){
+    for (j in 0:N){
+      L_P_N_1 <- L_P_N_1 + i*X[i+1,j+1] #since R indexes at 1
     }
   }
   L_p_N_val <- abs(L_P_N_1  - L_P_N) / L_P_N
@@ -48,9 +48,9 @@ while ( L_a_N_val > 0.02 || L_p_N_val> 0.02  ){
   #Calc L_A
   L_A_N <- L_A_N_1
   L_A_N_1 <- 0
-  for (i in 1:nrow(X)){
-    for (j in 1:(N+1)){
-      L_A_N_1 <- L_A_N_1 + (j -1)*X[i,j]
+  for (i in (0:(nrow(X)-1))){
+    for (j in 0:N){
+      L_A_N_1 <- L_A_N_1 + j*X[i+1,j+1] #since R indexes at 1
     }
   }
   L_a_N_val <- abs(L_A_N_1  - L_A_N) / L_A_N
