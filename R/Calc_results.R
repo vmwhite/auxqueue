@@ -82,6 +82,10 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
     W_A_q = (L_P_q / lambda) + (L_A_q/lambda_aux)
   }
 
+  ### probability regular service occurs if aux queue is too long
+  #transition probaiblity that aux queue is full
+  #times the probability of an aux call being the next event
+
   results <- list(r,s, K,mu_p, mu_aux, lambda, p)
 
   if (skip == FALSE){

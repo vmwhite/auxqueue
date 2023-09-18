@@ -7,6 +7,7 @@
 #' @param lambda := arrival rate of customers
 #' @param p := percentage of customers that are of type primary
 #' @param K := truncation parameter, default of 13
+#' @param Stability:= default TRUE. TRUE is the queue checks for stability of inputs to 0.02 tolerance. False is with K being strictly equal to K.
 #'
 #' @return results in the form of a data frame
 #' @export
@@ -20,7 +21,7 @@
 #' p <- .8
 #' K <- 13
 #' results<- auxqueue(c_p,c_aux,mu_p, mu_aux, lambda, p, K=13)
-auxqueue <- function(c_p,c_aux,mu_p, mu_aux, lambda, p, K=13){
+auxqueue <- function(c_p,c_aux,mu_p, mu_aux, lambda, p, K=13, Stability = TRUE){
   #### redefine parameters
   q <- 1-p
   lambda_aux <- q*lambda
@@ -33,7 +34,7 @@ auxqueue <- function(c_p,c_aux,mu_p, mu_aux, lambda, p, K=13){
   }
   if (skip == FALSE){
     #### Solve for Truncation parameter K ######
-    X_i <- Solve_K(s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p, K)
+    X_i <- Solve_K(s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p, K, Stability)
     K <- ncol(X_i) - 1
     ### solve for A matrix ####
     #a_ij <- calc_a_ij()
