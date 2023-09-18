@@ -82,8 +82,15 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
     W_A_q = (L_P_q / lambda) + (L_A_q/lambda_aux)
   }
 
-  ### probability regular service occurs if aux queue is too long
-  #transition probaiblity that aux queue is full
+  ### the probability regular service occurs if aux queue is too long
+  #the probability a type A arrival is the next event, where primary service doesnt matter
+  prob <- lambda_aux / (lambda + mu_aux + mu_p)
+  beta <- X_i[1,K+1] * (lambda_aux / (lambda + mu_aux ))
+  # if there is at least 1 primary call being served
+  for(i in 2:(ncol(X_i))){
+    beta <- beta + X_i[i,K+1]
+  }
+
   #times the probability of an aux call being the next event
 
   results <- list(r,s, K,mu_p, mu_aux, lambda, p)
@@ -98,8 +105,9 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
     results <- append(results,p_d_A)
     results <- append(results,W_P_q)
     results <- append(results,W_A_q)
+    results <- append(results,beta)
   }else{
-    for (i in 1:9){
+    for (i in 1:10){
       results <- append(results, "unstable")
     }
   }
@@ -117,6 +125,7 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
   metrics <- append(metrics, "p_d_A")
   metrics <- append(metrics, "W_P_q" )
   metrics <- append(metrics, "W_A_q" )
+  metrics <- append(metrics, "beta_typeA_coveredby_Pserver" )
   colnames(DF) <- metrics
   return(DF)
 }
