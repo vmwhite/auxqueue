@@ -80,17 +80,17 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
     W_P_q = L_P_q / lambda
     ### expected waiting time in queue for auxiliary customers, the mean delay for type A customers
     W_A_q = (L_P_q / lambda) + (L_A_q/lambda_aux)
-  }
 
-  ### the probability regular service occurs if aux queue is too long
-  #the probability a type A arrival is the next event, where primary service doesnt matter
-  prob <- lambda_aux / (lambda + mu_aux + mu_p)
-  beta <- X_i[1,K+1] * (lambda_aux / (lambda + mu_aux ))
-  # if there is at least 1 primary call being served
-  for(i in 2:(ncol(X_i))){
-    beta <- beta + X_i[i,K+1]
-  }
 
+    ### the probability regular service occurs if aux queue is too long
+    #the probability a type A arrival is the next event, where primary service doesnt matter
+    prob <- lambda_aux / (lambda + mu_aux + mu_p)
+    beta <- X_i[1,K+1] * (lambda_aux / (lambda + mu_aux ))
+    # if there is at least 1 primary call being served
+    for(i in 2:(ncol(X_i))){
+      beta <- beta + X_i[i,K+1]
+    }
+  }
   #times the probability of an aux call being the next event
 
   results <- list(r,s, K,mu_p, mu_aux, lambda, p)

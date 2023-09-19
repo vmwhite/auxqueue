@@ -4,7 +4,18 @@
 \alias{Solve_K}
 \title{Solve for Truncation parameter K ######}
 \usage{
-Solve_K(s, r, lambda, lambda_aux, lambda_p, mu_p, mu_aux, p, N = s + 1)
+Solve_K(
+  s,
+  r,
+  lambda,
+  lambda_aux,
+  lambda_p,
+  mu_p,
+  mu_aux,
+  p,
+  N = s + 1,
+  Stability
+)
 }
 \arguments{
 \item{s}{:= number of auxiliary servers}

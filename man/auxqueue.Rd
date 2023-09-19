@@ -4,7 +4,7 @@
 \alias{auxqueue}
 \title{A QUEUEING SYSTEM WITH AUXILIARY SERVERS}
 \usage{
-auxqueue(c_p, c_aux, mu_p, mu_aux, lambda, p, K = 13)
+auxqueue(c_p, c_aux, mu_p, mu_aux, lambda, p, K = 13, Stability = TRUE)
 }
 \arguments{
 \item{c_p}{:= number of primary servers}
@@ -20,6 +20,8 @@ auxqueue(c_p, c_aux, mu_p, mu_aux, lambda, p, K = 13)
 \item{p}{:= percentage of customers that are of type primary}
 
 \item{K}{:= truncation parameter, default of 13}
+
+\item{Stability:=}{default TRUE. TRUE is the queue checks for stability of inputs to 0.02 tolerance. False is with K being strictly equal to K.}
 }
 \value{
 results in the form of a data frame
