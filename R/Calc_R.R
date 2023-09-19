@@ -51,8 +51,15 @@ Calc_R <- function(A, K,s){
         R_N <- R_N + (matrix_power(R_Nminusone,m-1)%*% A[m,,])
         R_N <- R_N %*% temp
       }
-      R_Nminusone <- R_N
+      t <- try(solve(I - R_N))
+      if("try-error" %in% class(t)){
+        R <- R_Nminusone
+        paste0("Using prior R approximation instead.")
+        break
+      }else{
+        R_Nminusone <- R_N
+        R <- R_Nminusone
+      }
   }
-  R<- R_N
   return(R)
 }

@@ -54,19 +54,15 @@ Calc_X <- function(K,s,r, A,B,R){
   b <- matrix(0, nrow=((r+1)*matrix_size),ncol=1)
   b <- rbind(b,1)
 
-
-  # Use QR decomposition to solve the system
-  qr_decomp <-qr(G)
+   qr_decomp <-qr(G)
   t <- try(X <- qr.solve(qr_decomp$qr, b))
   if("try-error" %in% class(t)){
+    paste0("Usling lsfit for solving for probaility transition matrix instead")
     #X <- ginv(G) %*% b ## takes longer
     X <- lsfit(G, b)
     X <- X$coefficients
     #
   }
-
-
-
 
   # add additional rows to X
   X <- normalize_vector(X,matrix_size,R)
@@ -80,6 +76,6 @@ Calc_X <- function(K,s,r, A,B,R){
       count <- count+1
     }
   }
-  X_i <- na.omit(X_i)
+  X_i[is.na(X_i)] <- 0
   return(X_i)
 }
