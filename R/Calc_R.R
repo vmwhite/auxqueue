@@ -35,16 +35,22 @@ Calc_R <- function(A, K,s){
   }
   temp <- solve(temp)
   R_Nminusone <- matrix(0, nrow=matrix_size, ncol=matrix_size)
+  R_N <- A[1,,] %*% temp
   K_val = K-s+2 +1
-  #time_limit <- 10
-  #start_time <- Sys.time()
   #while (difftime(Sys.time(), start_time, units = "secs") < time_limit ) {
-  for (N in 1:(A_m_lim)){
-      R_N <-matrix(0, nrow=matrix_size, ncol=matrix_size)
+  while ( max(abs(diff(R_N - R_Nminusone))) > 0.0001){
+    tol <- max(abs(diff(R_N - R_Nminusone)))
+    R_Nminusone <- R_N
+    R_N <- matrix(0, nrow=matrix_size, ncol=matrix_size)
+    for (N in 1:(A_m_lim)){
       R_N <- R_N + A[1,,]
       if (A_m_lim > 3){
         for (m in 3:(A_m_lim)){
-          R_N <- R_N + (matrix_power(R_Nminusone,m-1)%*% A[m,,])
+          val <- R_Nminusone
+          for (expo in (2:(m-1))){
+            val <- val %*% R_Nminusone
+          }
+          R_N <- R_N + (val%*% A[m,,])
         }
         R_N <- R_N %*% temp
       } else if (A_m_lim == 3){
@@ -53,13 +59,14 @@ Calc_R <- function(A, K,s){
       }
       t <- try(solve(I - R_N))
       if("try-error" %in% class(t)){
+        R_N <-  R_Nminusone
         R <- R_Nminusone
-        paste0("Using prior R approximation instead.")
+        print(paste0("Using prior R approximation instead. current difference in approximation iterations:", tol))
         break
       }else{
-        R_Nminusone <- R_N
-        R <- R_Nminusone
+        R <- R_N
       }
+    }
   }
   return(R)
 }

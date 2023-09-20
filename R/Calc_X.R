@@ -33,7 +33,8 @@ Calc_X <- function(K,s,r, A,B,R){
   #x_0*e + x_1*e +.. x_r(I-R)^{-1}*e = 1
   # e is the column vector with all its components equal to 1
   e <- matrix(1, nrow = r, ncol=1)
-  matrix_size = K+1
+  matrix_size <- K + 1
+  I <- diag(1,matrix_size)
   # dummy x variable
   X_r <- matrix(1, nrow = 1, ncol=matrix_size)
   row_list <- c()
@@ -57,7 +58,7 @@ Calc_X <- function(K,s,r, A,B,R){
    qr_decomp <-qr(G)
   t <- try(X <- qr.solve(qr_decomp$qr, b))
   if("try-error" %in% class(t)){
-    paste0("Usling lsfit for solving for probaility transition matrix instead")
+    print(paste0("Using lsfit for solving for probaility transition matrix instead"))
     #X <- ginv(G) %*% b ## takes longer
     X <- lsfit(G, b)
     X <- X$coefficients

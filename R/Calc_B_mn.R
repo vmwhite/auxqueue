@@ -100,16 +100,8 @@ Calc_Bmn <- function(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p){
             if( (i-1) == r-s && (j-1)>=s ){
               # for transitions from state  (i,) to (i,)
               if (i_two == i ){
-                if ((j-1)+(i-1) == (r+s)){
-                  B[m,n,j,j-1] = s*mu_aux*p
-                }else{
                   B[m,n,j,j-1] = s*mu_p
-                }
-
-                #if((j-1) < K){
-                # B[m,n,j,j+1] =lambda_aux
-                #}
-                # for transitions from state  (i,) to (i-1,)
+              # for transitions from state  (i,) to (i-1,)
               } else if (i_two == i - 1){
                 B[m,n,j,j] = (r-s)*mu_p
               }
@@ -117,7 +109,7 @@ Calc_Bmn <- function(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p){
             }else if( (i-1)>= r-s && (j-1)==s ){
               # for transitions from state  (i,) to (i,)
               if (i_two == i){
-                B[m,n,j,j-1] = s*mu_aux*p
+                B[m,n,j,j-1] = s*mu_aux
                 # for transitions from state  (i,) to (i-1,)
               } else if (i_two == i - 1){
                 B[m,n,j,j] = (r-s)*mu_p*p + s*mu_aux*q
