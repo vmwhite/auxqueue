@@ -40,16 +40,15 @@ auxqueue <- function(c_p,c_aux,mu_p, mu_aux, lambda, p, K=13, Stability = TRUE){
     #checking for reductions
     if(reduced_by > 0){
       K <- K - s
-      s <- round(s/reduced_by)
+      s <- max(1,round(s/reduced_by))
       K <- K + s
-      r <- round(r /reduced_by)
+      r <- max(1,round(r /reduced_by))
       lambda  <- lambda /reduced_by
       lambda_aux <- lambda *(1-p)
       lambda_p  <- lambda*p
+    }else{
+      K <- ncol(X_i) - 1
     }
-
-
-    K <- ncol(X_i) - 1
     ### solve for A matrix ####
     #a_ij <- calc_a_ij()
     #A <- Calc_Am(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)

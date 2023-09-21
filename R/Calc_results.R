@@ -41,11 +41,14 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip, reduced
     ### the probability of a Type A customer waiting while a primary server is free
     alpha <- 0
     for(i in 1:((r-s))){
-      for(j in (s+2):ncol(X_i)){
+      if (s+2 == ncol(X_i)){
+        alpha <- alpha + X_i[i,ncol(X_i)]
+      }else{
+        for(j in (s+2):ncol(X_i)){
         alpha <- alpha + X_i[i,j]
+        }
       }
     }
-
     ### steady state number customers waiting in the primary queue
     L_P_q <- 0 ### steady state number customers waiting in the primary queue
     p_d_P<- 0  ### the probability of delay for Type P customer

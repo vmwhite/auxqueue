@@ -34,20 +34,23 @@ if (Stability == TRUE){
     N <- N + 1
     A <- Calc_Am(N,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
     R <- Calc_R(A, N, s)
-    reduced_by = 0
-    count = 0
-    while (R == FALSE){
-      count =count +1
-      reduced_by <- count^2
-      N <- N - s
-      s <- round(s/reduced_by)
-      N <- N + s
-      r <- round(r /reduced_by)
+    reduced_by <- 0
+    count <- 0
+    r_og <- r
+    s_og <- s
+    while (length(R) == 1){
+      count <- count +1
+      reduced_by <- 2^count
+      N <- N -s
+      s <- max(1,round(s_og/reduced_by))
+      N <- N +s
+      r <- max(1,round(r_og /reduced_by))
       lambda  <- lambda /reduced_by
       lambda_aux <- lambda *(1-p)
       lambda_p  <- lambda*p
       A <- Calc_Am(N,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
       R <- Calc_R(A, N, s)
+    }
     }
     B <- Calc_Bmn(N,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
     X <- Calc_X(N,s,r,A,B,R)
@@ -78,15 +81,17 @@ if (Stability == TRUE){
 }else{
   A <- Calc_Am(N,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
   R <- Calc_R(A, N, s)
-  reduced_by = 0
-  count = 0
+  reduced_by <- 0
+  count <- 0
+  r_og <- r
+  s_og <- s
   while (length(R) == 1){
-    count =count +1
-    reduced_by <- count^2
+    count <- count +1
+    reduced_by <- 2^count
     N <- N -s
-    s <- round(s/reduced_by)
+    s <- max(1,round(s_og/reduced_by))
     N <- N +s
-    r <- round(r /reduced_by)
+    r <- max(1,round(r_og /reduced_by))
     lambda  <- lambda /reduced_by
     lambda_aux <- lambda *(1-p)
     lambda_p  <- lambda*p
