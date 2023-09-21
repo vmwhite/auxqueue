@@ -34,7 +34,21 @@ auxqueue <- function(c_p,c_aux,mu_p, mu_aux, lambda, p, K=13, Stability = TRUE){
   }
   if (skip == FALSE){
     #### Solve for Truncation parameter K ######
-    X_i <- Solve_K(s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p, K, Stability)
+    newlist<- Solve_K(s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p, K, Stability)
+    X_i <- newlist$X
+    reduced_by <- newlist$reduced_by
+    #checking for reductions
+    if(reduced_by > 0){
+      K <- K - s
+      s <- round(s/reduced_by)
+      K <- K + s
+      r <- round(r /reduced_by)
+      lambda  <- lambda /reduced_by
+      lambda_aux <- lambda *(1-p)
+      lambda_p  <- lambda*p
+    }
+
+
     K <- ncol(X_i) - 1
     ### solve for A matrix ####
     #a_ij <- calc_a_ij()
@@ -50,7 +64,7 @@ auxqueue <- function(c_p,c_aux,mu_p, mu_aux, lambda, p, K=13, Stability = TRUE){
     #X_i <- Calc_X(K,s,r, A,B,R)
     }
     ### calculate results
-    results <- Calc_results(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip)
+    results <- Calc_results(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip, newlist$reduced_by)
 
 return(results)
   }

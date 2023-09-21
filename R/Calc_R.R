@@ -54,7 +54,9 @@ Calc_R <- function(A, K,s){
       if("try-error" %in% class(t)){
         R_N <-  R_Nminusone
         R <- R_Nminusone
-        print(paste0("Using prior R approximation instead. current difference in approximation iterations:", tol))
+        R <- FALSE
+        print(paste0("Reducing size by 2" ))
+        #print(paste0("Using prior R approximation instead. current difference in approximation iterations:", tol))
         break
       }else{
         R <- R_N

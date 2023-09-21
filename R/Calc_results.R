@@ -30,7 +30,7 @@
 #' X_i <- Calc_X(K,s,r, A,B,R)
 #' Calc_results(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip)
 
-Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
+Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip, reduced_by){
   if (skip == FALSE){
     ### L^p_N = mean number of individuals in the primary queue when the truncation is N #skip
     ### L^a_N = mean number of individuals in the auxiliary queue when the truncation is N #skip
@@ -93,7 +93,7 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
   }
   #times the probability of an aux call being the next event
 
-  results <- list(r,s, K,mu_p, mu_aux, lambda, p)
+  results <- list(r,s, K,mu_p, mu_aux, lambda, p, reduced_by)
 
   if (skip == FALSE){
     results <- append(results,rho)
@@ -115,7 +115,7 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip){
   #create DF of results
   DF <- data.frame(results)
   # set column names
-  metrics <- list("r", "s","K", "mu_p", "mu_aux","lambda", "p" )
+  metrics <- list("r", "s","K", "mu_p", "mu_aux","lambda", "p", "reduced_by" )
   metrics <- append(metrics, "rho_P" )
   metrics <- append(metrics, "rho_A" )
   metrics <- append(metrics, "alpha_typeA_prob_delay" )

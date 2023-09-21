@@ -62,7 +62,8 @@ Calc_X <- function(K,s,r, A,B,R){
     #X <- ginv(G) %*% b ## takes longer
     X <- lsfit(G, b)
     X <- X$coefficients
-    #
+    # remove first intercept coefficent
+    X <- X[-1]
   }
 
   # add additional rows to X
