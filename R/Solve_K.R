@@ -51,7 +51,6 @@ if (Stability == TRUE){
       A <- Calc_Am(N,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
       R <- Calc_R(A, N, s)
     }
-    }
     B <- Calc_Bmn(N,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
     X <- Calc_X(N,s,r,A,B,R)
 
