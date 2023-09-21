@@ -31,6 +31,7 @@ auxqueue <- function(c_p,c_aux,mu_p, mu_aux, lambda, p, K=13, Stability = TRUE){
   skip<- FALSE
   if (grepl(  "ERROR",print(Checks(lambda, mu_p, mu_aux, c_p, c_aux,p)), fixed = TRUE) == TRUE){
     skip <- TRUE
+    newlist$reduced_by <- 0
   }
   if (skip == FALSE){
     #### Solve for Truncation parameter K ######
