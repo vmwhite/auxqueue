@@ -86,12 +86,17 @@ Calc_results <-function(p,lambda,lambda_aux,r,s,mu_p,mu_aux,K,X_i, skip, reduced
 
 
     ### the probability regular service occurs if aux queue is too long
-    #the probability a type A arrival is the next event, where primary service doesnt matter
-    prob <- lambda_aux / (lambda + mu_aux + mu_p)
-    beta <- X_i[1,K+1] * (lambda_aux / (lambda + mu_aux ))
+    beta <- 0
+    #the probability a type A arrival is the next event, when primary server is free, aux are all busy
+    prob_pfree <- (lambda_aux / (lambda + mu_aux ))
+    for(i in 1:(r-1+1)){
+      beta <- beta + X_i[i,K+1]*prob_pfree
+    }
+    #the probability a type A arrival is the next event, when all servers busy
+    prob_busy <-lambda_aux / (lambda + mu_aux + mu_p)
     # if there is at least 1 primary call being served
-    for(i in 2:(ncol(X_i))){
-      beta <- beta + X_i[i,K+1]
+    for(i in (r+1):(nrow(X_i))){
+      beta <- beta + X_i[i,K+1]*prob_busy
     }
   }
   #times the probability of an aux call being the next event
