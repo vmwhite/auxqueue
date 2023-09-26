@@ -29,7 +29,7 @@ Calc_Bmn <- function(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p){
   # + 1 since r indexes at 1
   matrix_size <- (K) + 1
   m_bmax <- max(K-s+2+1,r+1)
-  n_bmax<- max( matrix_size,(K-2*s+ r)+1, r)
+  n_bmax<- max( matrix_size,(r-(2*s)+ K+1)+1, r)
   B_mn <- matrix(0, nrow=matrix_size, ncol=matrix_size)
   B <- array(c(B_mn), c(m_bmax , n_bmax , matrix_size, matrix_size))
   for (m in 1:m_bmax){
@@ -115,10 +115,13 @@ Calc_Bmn <- function(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p){
                 # transition from (i,j) to  (i - k -1, j+k), k ==0 is to (i-1) state
               }else{
                 for (k in 1:((i-1)-r+s)){
-                  if( k < (i-1) - r + s &&  i_two == i - k - 1 && (((j-1)+k < K))){
+                  if( i_two == i - k - 1 && (((j-1)+ k == K) || k == (i-1)-r+s )){
+                    # if max aux queue is reached or if primary queue is exhausted
+                    if ((j-1) +k <= K){
+                      B[m,n,j,j+k] =  (r-s)*mu_p*q^k
+                    }
+                  }else if ( i_two == i - k - 1 && (((j-1)+k < K))){
                     B[m,n,j,j+k] = (r-s)*mu_p*(q^k)*p
-                  }else if (k <= (i-1) - r + s && i_two == i - k - 1 && (j-1)+ k <= K){
-                    B[m,n,j,j+k] = (r-s)*mu_p*q^k
                   }
                 }
               }
@@ -130,10 +133,13 @@ Calc_Bmn <- function(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p){
                 # transition from (i,j) to  (i - k -1, j+k), k > 0 since there is a primary queue
               }else{
                 for (k in 0:((i-1)-r+s)){
-                  if( k < (i-1) - r + s &&  i_two == i - k - 1 && (((j-1)+k < K) )){
+                  if( i_two == i - k - 1 && (((j-1)+ k == K) || k == (i-1)-r+s )){
+                    # if max aux queue is reached or if primary queue is exhausted
+                    if ((j-1) +k <= K){
+                      B[m,n,j,j+k] =  (r-s)*mu_p*q^k
+                     }
+                    }else if ( i_two == i - k - 1 && (((j-1)+k < K))){
                     B[m,n,j,j+k] = (r-s)*mu_p*(q^k)*p
-                  }else if (k <= (i-1) - r + s && i_two == i - k - 1 && (j-1)+ k <= K){
-                    B[m,n,j,j+k] =  (r-s)*mu_p*q^k
                   }
                 }
               }

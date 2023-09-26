@@ -114,9 +114,9 @@ Calc_Am <- function(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p){
               # transition from (i,j) to  (i - k -1, j+k), k ==0 is to (i-1) state
             }else{
               for (k in 1:((i-1)-r+s)){
-                if( k < (i-1) - r + s &&  i_two == i - k - 1 && (j-1)+ k <= K ){
+                if( i_two == i - k - 1 && (((j-1)+k < K) )){
                   A[m,j,j+k] = (r-s)*mu_p*(q^k)*p
-                }else if (k == (i-1) - r + s && i_two == i - k - 1 && (j-1)+ k <= K){
+                }else if (i_two == i - k - 1 && (j-1)+ k == K){
                   A[m,j,j+k] = (r-s)*mu_p*q^k
                 }
               }
@@ -129,9 +129,9 @@ Calc_Am <- function(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p){
               # transition from (i,j) to  (i - k -1, j+k), k > 0 since there is a primary queue
             }else{
               for (k in 0:((i-1)-r+s)){
-                if( k < (i-1) - r + s &&  i_two == i - k - 1 && (((j-1)+k <= K) )){
+                if(  i_two == i - k - 1 && (((j-1)+k < K) )){
                   A[m,j,j+k] = (r-s)*mu_p*(q^k)*p
-                }else if (k == (i-1) - r + s && i_two == i - k - 1 && (j-1)+ k <= K){
+                }else if ( i_two == i - k - 1 && (j-1)+ k == K){
                   A[m,j,j+k] =  (r-s)*mu_p*q^k
                 }
               }

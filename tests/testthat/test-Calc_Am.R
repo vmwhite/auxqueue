@@ -20,7 +20,7 @@ test_that("check A_k matrix", {
                    , nrow = 5, ncol = 5, byrow = TRUE)
   A_1 <-    matrix(c(-(lam+3*mu_P),0,0,0,0,
                      mu_A*p,-(lam+calc_mu_mn(2,1,mu_P,mu_A)),0,0, 0,
-                     0, mu_A*p,-(lam+calc_mu_mn(2,1,mu_P,mu_A)),0,  0,
+                     0, mu_A,-(lam+calc_mu_mn(2,1,mu_P,mu_A)),0,  0,
                      0, 0,mu_A,-(lam+calc_mu_mn(2,1,mu_P,mu_A)),  0,
                      0,0,0,mu_A,-(lam+calc_mu_mn(2,1,mu_P,mu_A)))
                    , nrow = 5, ncol = 5, byrow = TRUE)

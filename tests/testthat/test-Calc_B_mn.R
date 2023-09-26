@@ -26,22 +26,22 @@ test_that("Test B matrix calculations", {
                   0,0,0,0,lam)
                 , nrow = 5, ncol = 5, byrow = TRUE)
   B_10 = matrix(c(-(lam+(0*mu_P)),lam_A,0, 0, 0,
-                  mu_A,-(lam +calc_mu_mn(0,0, mu_P,mu_A)),lam_A,  0, 0,
-                  0,mu_A,-(lam +calc_mu_mn(0,0, mu_P,mu_A)),  lam_A, 0,
-                  0,0, mu_A,-(lam +calc_mu_mn(0,0, mu_P,mu_A)),  lam_A,
-                  0,0,0,mu_A,-(lam +calc_mu_mn(0,0, mu_P,mu_A)))
-                , nrow = 5, ncol = 5, byrow = TRUE)
-  B_11 = matrix(c(-(lam+(1*mu_P)),lam_A,0, 0, 0,
                   mu_A,-(lam +calc_mu_mn(0,1, mu_P,mu_A)),lam_A,  0, 0,
                   0,mu_A,-(lam +calc_mu_mn(0,1, mu_P,mu_A)),  lam_A, 0,
                   0,0, mu_A,-(lam +calc_mu_mn(0,1, mu_P,mu_A)),  lam_A,
                   0,0,0,mu_A,-(lam +calc_mu_mn(0,1, mu_P,mu_A)))
                 , nrow = 5, ncol = 5, byrow = TRUE)
+  B_11 = matrix(c(-(lam+(1*mu_P)),lam_A,0, 0, 0,
+                  mu_A,-(lam +calc_mu_mn(1,1, mu_P,mu_A)),lam_A,  0, 0,
+                  0,mu_A,-(lam +calc_mu_mn(1,1, mu_P,mu_A)),  lam_A, 0,
+                  0,0, mu_A,-(lam +calc_mu_mn(1,1, mu_P,mu_A)),  lam_A,
+                  0,0,0,mu_A,-(lam +calc_mu_mn(1,1, mu_P,mu_A)))
+                , nrow = 5, ncol = 5, byrow = TRUE)
   B_12 = matrix(c(-(lam+(2*mu_P)),lam_A,0, 0, 0,
-                  mu_A,-(lam +calc_mu_mn(0,2, mu_P,mu_A)),lam_A,  0, 0,
-                  0,mu_A,-(lam +calc_mu_mn(0,2, mu_P,mu_A)),  lam_A, 0,
-                  0,0, mu_A,-(lam +calc_mu_mn(0,2, mu_P,mu_A)),  lam_A,
-                  0,0,0,mu_A,-(lam +calc_mu_mn(0,2, mu_P,mu_A)))
+                  mu_A,-(lam +calc_mu_mn(2,1, mu_P,mu_A)),0,  0, 0,
+                  0,mu_A,-(lam +calc_mu_mn(2,1, mu_P,mu_A)),  0, 0,
+                  0,0, mu_A,-(lam +calc_mu_mn(2,1, mu_P,mu_A)),  0,
+                  0,0,0,mu_A,-(lam +calc_mu_mn(2,1, mu_P,mu_A)))
                 , nrow = 5, ncol = 5, byrow = TRUE)
   B_21 = matrix(c(mu_P,0,0, 0, 0,
                   0,mu_P,0,  0, 0,
@@ -74,7 +74,7 @@ test_that("Test B matrix calculations", {
                   0,0,0,0, 0, 0)
                 , nrow = 5, ncol = 5, byrow = TRUE)
   B_45 = matrix(c(0,0,0,0, 0,
-                  0,0,0,  2*mu_P*2*mu_P*calc_alpha_i(p,2), 0,
+                  0,0,0,  2*mu_P*calc_alpha_i(p,2), 0,
                   0,0,0,   0, 2*mu_P*(q^2),
                   0,0,0,  0, 0,
                   0,0,0,0, 0)
