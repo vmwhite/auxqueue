@@ -98,7 +98,7 @@ Calc_Am <- function(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p){
           if( (i-1) == r-s && (j-1)>=s){
             # for transitions from state  (i,) to (i,)
             if (i_two == i){
-              A[m,j,j-1] = s*mu_p
+              A[m,j,j-1] = s*mu_aux
               # for transitions from state  (i,) to (i-1,)
             } else if (i_two == i - 1){
               A[m,j,j] = (r-s)*mu_p

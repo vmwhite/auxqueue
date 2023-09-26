@@ -49,9 +49,8 @@ Calc_Bmn <- function(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p){
             }
             # for transitions from state  (i,) to (i,)
           }else if (i_two == i){
-            #B[m,n,j,j] = lambda # not for B's but for A's yes
             B[m,n,j,j-1] = s*mu_aux
-            if((j - 1) < K){
+            if((j-1 +1) <= K){
               B[m,n,j,j+1] = lambda_aux
             }
             # for transitions from state  (i,) to (i-1,)
@@ -85,7 +84,7 @@ Calc_Bmn <- function(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p){
           } else if (i_two == i - 1){
             B[m,n,j,j] = (i-1)*mu_p  # -1 since R indexes i at 1
           }
-          #### if all p and q servers are busy #####
+          #### if all p and aux servers are busy #####
         }else if((i-1) + min((j-1),s) >= r && (j-1) >= s){
           # for transitions from state  (i,) to (i+1,)
           if(i_two  == i + 1 ){
@@ -100,7 +99,7 @@ Calc_Bmn <- function(K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p){
             if( (i-1) == r-s && (j-1)>=s ){
               # for transitions from state  (i,) to (i,)
               if (i_two == i ){
-                  B[m,n,j,j-1] = s*mu_p
+                  B[m,n,j,j-1] = s*mu_aux
               # for transitions from state  (i,) to (i-1,)
               } else if (i_two == i - 1){
                 B[m,n,j,j] = (r-s)*mu_p
