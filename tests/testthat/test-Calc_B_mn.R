@@ -71,8 +71,8 @@ test_that("Test B matrix calculations", {
   B_44 = matrix(c(0,0,0,0, 0,
                   0,0,0, 2*mu_P*(q^2), 0,
                   0,0,0, 0, 2*mu_P*(q^2),
-                  0,0,0,  0,0, 0,
-                  0,0,0,0, 0, 0)
+                  0,0,0,  0,0,
+                  0,0,0,0,0)
                 , nrow = 5, ncol = 5, byrow = TRUE)
   B_45 = matrix(c(0,0,0,0, 0,
                   0,0,0,  2*mu_P*calc_alpha_i(p,2), 0,
@@ -120,41 +120,29 @@ test_that("Test B matrix calculations", {
                   0,lam_P,0,
                   0,0,lam)
                 , nrow = 3, ncol = 3, byrow = TRUE)
-  B_01 = matrix(c(lam_P,0,0, 0, 0,
-                  0,lam_P,0,  0, 0,
-                  0,0,lam_P,  0, 0,
-                  0,0,0,lam_P, 0,
-                  0,0,0,0,lam)
+  B_01 = matrix(c(lam_P,0,0,
+                  0,lam,0,
+                  0,0,lam)
                 , nrow = 3, ncol = 3, byrow = TRUE)
-  B_10 = matrix(c(-(lam+(0*mu_P)),lam_A,0, 0, 0,
-                  mu_A,-(lam +calc_mu_mn(0,1, mu_P,mu_A)),lam_A,  0, 0,
-                  0,mu_A,-(lam +calc_mu_mn(0,1, mu_P,mu_A)),  lam_A, 0,
-                  0,0, mu_A,-(lam +calc_mu_mn(0,1, mu_P,mu_A)),  lam_A,
-                  0,0,0,mu_A,-(lam +calc_mu_mn(0,1, mu_P,mu_A)))
+  B_10 = matrix(c(-(lam+(0*mu_P)),lam_A,0,
+                  mu_A,-(lam +mu_A),lam_A,
+                  0,mu_A,-(lam +mu_A))
                 , nrow = 3, ncol = 3, byrow = TRUE)
-  B_11 = matrix(c(-(lam+(1*mu_P)),lam_A,0, 0, 0,
-                  mu_A,-(lam +calc_mu_mn(1,1, mu_P,mu_A)),lam_A,  0, 0,
-                  0,mu_A,-(lam +calc_mu_mn(1,1, mu_P,mu_A)),  lam_A, 0,
-                  0,0, mu_A,-(lam +calc_mu_mn(1,1, mu_P,mu_A)),  lam_A,
-                  0,0,0,mu_A,-(lam +calc_mu_mn(1,1, mu_P,mu_A)))
+  B_11 = matrix(c(-(lam+(1*mu_P)),lam_A,0,
+                  mu_A,-(lam +calc_mu_mn(1,1, mu_P,mu_A)),0,
+                  0,mu_A,-(lam +calc_mu_mn(1,1, mu_P,mu_A)))
                 , nrow = 3, ncol = 3, byrow = TRUE)
-  B_21 = matrix(c(mu_P,0,0, 0, 0,
-                  0,mu_P,0,  0, 0,
-                  0,0,mu_P,  0, 0,
-                  0,0,0,mu_P, 0,
-                  0,0,0,0,mu_P)
+  B_21 = matrix(c(mu_P,0,0,
+                  0,mu_P,0,
+                  0,0,mu_P)
                 , nrow = 3, ncol = 3, byrow = TRUE)
-  B_22 = matrix(c(2*mu_P,0,0, 0, 0,
-                  0,2*mu_P,0,  0, 0,
-                  0,0,2*mu_P,  0, 0,
-                  0,0,0,2*mu_P, 0,
-                  0,0,0,0, 2*mu_P)
+  B_22 = matrix(c(2*mu_P,0,0,
+                  0,mu_P*p + mu_A*q,0,
+                  0,0, mu_P)
                 , nrow = 3, ncol = 3, byrow = TRUE)
-  B_32 = matrix(c(0,3*mu_P*q,0,0, 0,
-                  0,0,2*mu_P*calc_alpha_i(p,1),0, 0,
-                  0,0,0, 2*mu_P*calc_alpha_i(p,1), 0,
-                  0,0,0,  0, 2*mu_P*q,
-                  0,0,0,0, 0)
+  B_32 = matrix(c(0,0,0,
+                  0,0, mu_P*q,
+                  0,0, 0)
                 , nrow = 3, ncol = 3, byrow = TRUE)
 
   B <- Calc_Bmn(K,s,r,lam,lam_A,lam_P,mu_P,mu_A, p)

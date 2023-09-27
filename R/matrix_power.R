@@ -20,15 +20,16 @@
 #' n <- 3
 #' matrix_power(A, n)
 matrix_power <- function(A, n) {
-  if (n == 0){
-    A_power <- diag(nrow(A))
-  }else if (n==1){
-    A_power <- A
-  }else{
-    A_power <- A
-    for (i in 2:n) {
-      A_power<- A_power %*% A
+  count = 0
+  while(count <= n){
+    if (count == 0){
+      A_power <- diag(nrow(A))
+    }else if (count == 1){
+      A_power <- A
+    }else{
+      A_power <- A_power %*% A
     }
-  }
+    count <- count + 1
+    }
   return(A_power)
 }

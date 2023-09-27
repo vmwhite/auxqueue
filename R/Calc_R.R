@@ -2,8 +2,9 @@
 #' Title
 #'
 #' @param A := A_m matrix that represents non-boundary behavior
+#' @param s
+#' @param tolerance
 #' @param K := truncation parameter
-#' @param s := number of auxiliary servers
 #'
 #' @return R matrix
 #' @export
@@ -20,7 +21,7 @@
 #' mu_aux <-.5
 #' A <- Calc_Am (K,s,r,lambda,lambda_aux,lambda_p,mu_p,mu_aux, p)
 #' Calc_R(A, K,s)
-Calc_R <- function(A, K,s){
+calc_R <- function(A, K,s, tolerance = 0.0001){
   matrix_size <- (K) + 1
   # A go from 0 to K-s+2
   A_m_lim <- K - s + 2 + 1 #add one since R indexes at 1
@@ -30,38 +31,35 @@ Calc_R <- function(A, K,s){
   temp <- solve(temp)
 
   R_Nminusone <- matrix(0, nrow=matrix_size, ncol=matrix_size)
-  #R_N <- A[1,,] %*% temp
-  R_N <- crossprod(A[1,,], temp)
-  K_val = K-s+2 +1
-  while ( max(abs(diff(R_N - R_Nminusone))) > 0.0001){
-    tol <- max(abs(diff(R_N - R_Nminusone)))
-    R_Nminusone <- R_N
-    R_N <- A[1,,]
-    if (A_m_lim > 3){
-      for (m in 3:(A_m_lim)){
-        val <- R_Nminusone
-        for (expo in (2:(m-1))){
-          val <- crossprod(val,R_Nminusone)
-        }
-        R_N <- R_N + (crossprod(val, A[m,,]))
-      }
-      R_N <- crossprod(R_N, temp)
-    } else if (A_m_lim == 3){
-      R_N <- R_N + (matrix_power(R_Nminusone,m-1)%*% A[m,,])
-      R_N <- R_N %*% temp
-    }
-      t <- try(solve(I - R_N))
-      if("try-error" %in% class(t)){
-        R_N <-  R_Nminusone
-        R <- R_Nminusone
-        R <- FALSE
-        print(paste0("Reducing size by 2" ))
-        #print(paste0("Using prior R approximation instead. current difference in approximation iterations:", tol))
-        break
-      }else{
-        R <- R_N
-      }
-    }
+  #initial R_0 GUESS
+  R_N <- A[1,,] %*%  temp
 
+  #update Guess
+  while ( max(abs(diff(R_N - R_Nminusone))) > tolerance){
+    tol <- max(abs(diff(R_N - R_Nminusone)))
+    # last guess
+    R_Nminusone <- R_N
+    #R^0 * A_0
+    R_N <- A[1,,]
+    # sum m = 2:A_m_lim R^k A_k
+    m = 2+1 # since R indexes at 1
+    while (m <= A_m_lim){
+      R_N <- R_N + (matrix_power(R_Nminusone,m-1) %*% A[m,,])
+      m <- m +1
+    }
+    #multiply sum by determinate of (I - A_1)
+    R_N <- R_N %*% temp
+    R <- R_N
+    # test if resulting R matrix is inversable
+    t <- try(solve(I - R_N))
+    if("try-error" %in% class(t)){
+      R_N <-  R_Nminusone
+      R <- R_Nminusone
+      R <- FALSE
+      print(paste0("Reducing size by 2" ))
+      #print(paste0("Using prior R approximation instead. current difference in approximation iterations:", tol))
+      break
+  }
+}
   return(R)
 }
